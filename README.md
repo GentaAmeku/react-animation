@@ -1,16 +1,3 @@
-# react-site-starter
+# react-animation
 
-## Dependencies
-
-- react
-- react-router-dom
-- react-helmet
-- lodash
-- styled-components
-- typography
-- google fonts (Noto Sans JP)
-- normalize.css
-- eslint
-- prettier
-
-Docker
+study animation with styled-components
