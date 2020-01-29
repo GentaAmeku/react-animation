@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { LayoutBox, Typography } from '../../shared';
+import React, { useState, useContext } from 'react';
+import { LayoutBox, Typography, Context } from '../../shared';
 import {
   Button,
   Card,
@@ -11,10 +11,10 @@ import {
   Direction,
   FillMode,
   FadeInOut,
+  RotateSVG,
+  JumpSVG,
 } from './styles';
-
-const RUN = 'running';
-const STOP = 'paused';
+import { Fish } from '../Icons';
 
 const colors = [
   '#E74C3C',
@@ -45,104 +45,106 @@ const Section = ({ title, noMargin, children }) => {
 };
 
 export const Animations = () => {
-  const [playState, setPlayState] = useState(STOP);
-  const handleStart = () => setPlayState(RUN);
-  const handleStop = () => setPlayState(STOP);
+  const { state } = useContext(Context);
   return (
     <>
-      <LayoutBox left>
-        <Button onClick={handleStart}>START</Button>
-        <LayoutBox ml={2}>
-          <Button onClick={handleStop}>STOP</Button>
-        </LayoutBox>
-      </LayoutBox>
       <Section title="Fade In">
-        <FadeIn state={playState}>
+        <FadeIn state={state}>
           <Circle />
         </FadeIn>
       </Section>
       <Section title="Fade Out">
-        <FadeOut state={playState}>
+        <FadeOut state={state}>
           <Circle />
         </FadeOut>
       </Section>
       <Section title="Size Scale">
-        <SizeScale state={playState} />
+        <SizeScale state={state} />
       </Section>
       <Section title="Timing">
-        <Timing timing="ease" state={playState}>
+        <Timing timing="ease" state={state}>
           <Circle />
         </Timing>
         <LayoutBox mt={2}>
-          <Timing timing="ease-in" state={playState}>
+          <Timing timing="ease-in" state={state}>
             <Circle />
           </Timing>
         </LayoutBox>
         <LayoutBox mt={2}>
-          <Timing timing="ease-out" state={playState}>
+          <Timing timing="ease-out" state={state}>
             <Circle />
           </Timing>
         </LayoutBox>
         <LayoutBox mt={2}>
-          <Timing timing="ease-in-out" state={playState}>
+          <Timing timing="ease-in-out" state={state}>
             <Circle />
           </Timing>
         </LayoutBox>
         <LayoutBox mt={2}>
-          <Timing timing="linear" state={playState}>
+          <Timing timing="linear" state={state}>
             <Circle />
           </Timing>
         </LayoutBox>
         <LayoutBox mt={2}>
-          <Timing timing="step-start" state={playState}>
+          <Timing timing="step-start" state={state}>
             <Circle />
           </Timing>
         </LayoutBox>
         <LayoutBox mt={2}>
-          <Timing timing="step-end" state={playState}>
+          <Timing timing="step-end" state={state}>
             <Circle />
           </Timing>
         </LayoutBox>
         <LayoutBox mt={2}>
-          <Timing timing="steps(5, start)" state={playState}>
+          <Timing timing="steps(5, start)" state={state}>
             <Circle />
           </Timing>
         </LayoutBox>
         <LayoutBox mt={2}>
-          <Timing timing="steps(5, end)" state={playState}>
+          <Timing timing="steps(5, end)" state={state}>
             <Circle />
           </Timing>
         </LayoutBox>
       </Section>
       <Section title="Direction">
-        <Direction direction="alternate" state={playState}>
+        <Direction direction="alternate" state={state}>
           <Circle />
         </Direction>
         <LayoutBox mt={2}>
-          <Direction direction="alternate-reverse" state={playState}>
+          <Direction direction="alternate-reverse" state={state}>
             <Circle />
           </Direction>
         </LayoutBox>
         <LayoutBox mt={2}>
-          <Direction direction="reverse" state={playState}>
+          <Direction direction="reverse" state={state}>
             <Circle />
           </Direction>
         </LayoutBox>
       </Section>
       <Section title="Fill Mode">
-        <FillMode fill="forwards" state={playState}>
+        <FillMode fill="forwards" state={state}>
           <Circle />
         </FillMode>
         <LayoutBox mt={2}>
-          <FillMode fill="backwards" state={playState}>
+          <FillMode fill="backwards" state={state}>
             <Circle />
           </FillMode>
         </LayoutBox>
       </Section>
       <Section title="FadeIn + FadeOut">
-        <FadeInOut state={playState}>
+        <FadeInOut state={state}>
           <Circle />
         </FadeInOut>
+      </Section>
+      <Section title="SVG">
+        <LayoutBox left>
+          <RotateSVG state={state}>
+            <Fish color="#A9E2F3" />
+          </RotateSVG>
+          <JumpSVG state={state}>
+            <Fish color="#A9E2F3" />
+          </JumpSVG>
+        </LayoutBox>
       </Section>
     </>
   );

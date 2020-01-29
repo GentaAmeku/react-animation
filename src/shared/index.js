@@ -8,3 +8,4 @@ export * from './styles/mediaQuery';
 export * from './styles/global';
 
 export * from './utils';
+export * from './context';

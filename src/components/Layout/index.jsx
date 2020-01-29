@@ -2,8 +2,7 @@ import React from 'react';
 import { TypographyStyle, GoogleFont } from 'react-typography';
 import { Header } from '../Header';
 import { Footer } from '../Footer';
-import { GlobalStyle } from '../../shared';
-import { Container, SEO } from '../../shared';
+import { GlobalStyle, PlayStateProvider, Container, SEO } from '../../shared';
 import typography from '../../theme/typography';
 
 const Head = ({ title, description }) => (
@@ -17,12 +16,12 @@ const Head = ({ title, description }) => (
 
 export const Layout = ({ children, ...rest }) => {
   return (
-    <>
+    <PlayStateProvider>
       <Head {...rest} />
       <Header />
       <Container>{children}</Container>
       <Footer />
-    </>
+    </PlayStateProvider>
   );
 };
 

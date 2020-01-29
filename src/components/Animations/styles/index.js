@@ -35,6 +35,21 @@ const moveX = keyframes`
   }
 `;
 
+const rotate = keyframes`
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const jump = keyframes`
+  50% {
+    transform: translateY(-35px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+`;
+
 const fadeInOut = keyframes`
   0% {
     opacity: 0;
@@ -55,18 +70,6 @@ const fadeInOut = keyframes`
 
 const animationPlayState = playState => css`
   animation-play-state: ${playState};
-`;
-
-export const Button = styled.button`
-  background-color: #ffffff;
-  border-radius: 4px;
-  border-style: none;
-  padding: 10px 30px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  outline: none;
-  &:active {
-    background: #f5f5f5;
-  }
 `;
 
 export const Card = styled.div`
@@ -128,4 +131,19 @@ export const FadeInOut = styled.div`
   /* animation: ${fadeIn} ${ANIMATION_SEC}, ${fadeOut} ${ANIMATION_SEC} 3.5s; */
   animation: ${fadeInOut} ${ANIMATION_SEC} linear ${COUNT};
   ${animationPlayState(props => props.state)}
+`;
+
+export const RotateSVG = styled.div`
+  > svg {
+    /* transform-origin: 50% 50%; */
+    animation: ${rotate} ${ANIMATION_SEC} linear ${COUNT};
+    ${animationPlayState(props => props.state)}
+  }
+`;
+
+export const JumpSVG = styled.div`
+  > svg {
+    animation: ${jump} 1s ease-out ${COUNT};
+    ${animationPlayState(props => props.state)}
+  }
 `;
